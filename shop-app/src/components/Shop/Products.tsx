@@ -1,5 +1,7 @@
 import ProductItem from "./ProductItem";
 
+import classes from "./Products.module.css";
+
 const DUMMY_PRODUCTS = [
   {
     id: "p1",
@@ -19,7 +21,7 @@ const DUMMY_PRODUCTS = [
 
 const Products = () => {
   return (
-    <section>
+    <section className={classes.products}>
       <h2>Buy your favorite products</h2>
       <ul>
         {DUMMY_PRODUCTS.map((product) => (
