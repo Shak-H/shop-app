@@ -1,5 +1,7 @@
 import React from "react";
 
+import Card from "../UI/Card";
+import Button from "../UI/Button";
 import classes from "./ProductItem.module.css";
 
 const ProductItem: React.FC<{
@@ -12,17 +14,17 @@ const ProductItem: React.FC<{
 
   return (
     <li className={classes.item}>
-      <div>
+      <Card>
         <header>
           <h3>{title}</h3>
           <div className={classes.price}>£{price.toFixed(2)}</div>
         </header>
         <img src={image} alt={title} />
         <div className={classes.actions}>
-          <button>Add to Cart</button>
-          <button>Add to Wishlist</button>
+          <Button>Add to Cart</Button>
+          <Button>Add to Wishlist</Button>
         </div>
-      </div>
+      </Card>
     </li>
   );
 };
