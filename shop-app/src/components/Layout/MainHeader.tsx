@@ -1,3 +1,5 @@
+import CartButton from "../Cart/CartButton";
+import WishlistButton from "../Wishlist/WishlistButton";
 import classes from "./MainHeader.module.css";
 
 const MainHeader = () => {
@@ -7,7 +9,8 @@ const MainHeader = () => {
       <nav>
         <ul>
           <li>
-            <button>Add to Cart</button>
+            <WishlistButton />
+            <CartButton />
           </li>
         </ul>
       </nav>
