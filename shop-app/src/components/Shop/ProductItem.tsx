@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
+import { cartActions } from "../../store/cart-slice";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./ProductItem.module.css";
@@ -10,7 +12,23 @@ const ProductItem: React.FC<{
   image: string;
   id: string;
 }> = (props) => {
-  const { title, price, image } = props;
+  const dispatch = useDispatch();
+
+  const { title, price, image, id } = props;
+
+  const addToCartHandler = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price,
+      })
+    );
+  };
+
+  // const addToWishlistHandler = () => {
+  //   dispatch(cartActions.addItemToCart());
+  // };
 
   return (
     <li className={classes.item}>
@@ -21,8 +39,8 @@ const ProductItem: React.FC<{
         </header>
         <img src={image} alt={title} />
         <div className={classes.actions}>
-          <Button>Add to Cart</Button>
-          <Button>Add to Wishlist</Button>
+          <Button onClick={addToCartHandler}>Add to Cart</Button>
+          {/* <Button onClick={addToWishlistHandler}>Add to Wishlist</Button> */}
         </div>
       </Card>
     </li>
