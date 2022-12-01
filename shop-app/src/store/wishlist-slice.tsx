@@ -31,6 +31,7 @@ const wishlistSlice = createSlice({
     removeItemFromWishlist(state, action: PayloadAction<any>) {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
+      state.quantity--;
       if (existingItem) {
         existingItem.quantity--;
         state.items = state.items.filter((item) => item.id !== id);
