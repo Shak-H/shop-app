@@ -1,6 +1,6 @@
 import classes from "./Card.module.css";
 
-const Card: React.FC<{ children: React.ReactNode }> = (props) => {
+const Card = (props: any) => {
   return <section className={classes.card}>{props.children}</section>;
 };
 

@@ -66,9 +66,9 @@ function App() {
         />
       )}
       <Layout>
-        {showWishlist && <Wishlist />}
         {showCart && <Cart />}
-        <Products />;
+        {showWishlist && <Wishlist />}
+        <Products />
       </Layout>
     </>
   );
@@ -78,65 +78,3 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export default App;
-
-// const sendCartData = async () => {
-//   dispatch(
-//     uiActions.showNotification({
-//       status: "pending",
-//       title: "Sending...",
-//       message: "Sending cart data",
-//     })
-//   );
-//   const response = await fetch(
-//     "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
-//     {
-//       method: "PUT",
-//       body: JSON.stringify(cart),
-//     }
-//   );
-//   if (!response.ok) {
-//     throw new Error("Error when adding to cart");
-//   }
-//   dispatch(
-//     uiActions.showNotification({
-//       status: "success",
-//       title: "Success!",
-//       message: "Added to cart!",
-//     })
-//   );
-// };
-// if (isInitial) {
-//   isInitial = false;
-//   return;
-// }
-// sendCartData().catch((error) => {
-//   dispatch(
-//     uiActions.showNotification({
-//       status: "error",
-//       title: "Error!",
-//       message: "Error when adding to cart!",
-//     })
-//   );
-// });
-
-// const sendWishlistData = async () => {
-//   const response = await fetch(
-//     "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/wishlist.json",
-//     {
-//       method: "PUT",
-//       body: JSON.stringify(wishlist),
-//     }
-//   );
-//   if (!response.ok) {
-//     throw new Error("Error when adding to wishlist");
-//   }
-// };
-// sendWishlistData().catch((error) => {
-//   dispatch(
-//     uiActions.showNotification({
-//       status: "error",
-//       title: "Error!",
-//       message: "Error when adding to wishlist!",
-//     })
-//   );
-// });

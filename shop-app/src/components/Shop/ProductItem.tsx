@@ -38,8 +38,8 @@ const ProductItem: React.FC<{
   };
 
   return (
-    <li className={classes.product}>
-      <Card>
+    <Card className={classes.product}>
+      <li>
         <header className={classes.product__header}>
           <h3 className={classes.title}>{title}</h3>
         </header>
@@ -49,8 +49,8 @@ const ProductItem: React.FC<{
           <Button onClick={addToCartHandler}>Add to Cart</Button>
           <Button onClick={addToWishlistHandler}>Add to Wishlist</Button>
         </div>
-      </Card>
-    </li>
+      </li>
+    </Card>
   );
 };
 

@@ -1,18 +1,26 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import WishlistItem from "./WishlistItem";
 
 import Card from "../UI/Card";
+import Modal from "../UI/Modal";
 
 import classes from "./Wishlist.module.css";
+import { uiActions } from "../../store/ui-slice";
 import { RootState } from "../../store";
 
 const Wishlist = () => {
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
 
+  const dispatch = useDispatch();
+
+  const hideWishlist = () => {
+    dispatch(uiActions.closeWishlist());
+  };
+
   return (
-    <Card>
-      <div className={classes.wishlist}>
+    <Modal>
+      <Card className={classes.wishlist}>
         <h2>Your Wishlist</h2>
         <ul>
           {wishlistItems.map((item) => (
@@ -28,8 +36,9 @@ const Wishlist = () => {
             />
           ))}
         </ul>
-      </div>
-    </Card>
+        <button onClick={hideWishlist}>Close</button>
+      </Card>
+    </Modal>
   );
 };
 

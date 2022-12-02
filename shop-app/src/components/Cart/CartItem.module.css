@@ -1,13 +1,20 @@
-.cartItem {
+.cart-item {
+  width: 100%;
   margin: 1rem 0;
   background-color: #575757;
   padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .cartItem__header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
+  padding-bottom: 2%;
 }
 
 .cartItem__heading {
@@ -23,6 +30,7 @@
 .cartItem__totalPrice {
   font-size: 1.2rem;
   font-weight: bold;
+  padding-bottom: 2%;
 }
 
 .cartItem__price {

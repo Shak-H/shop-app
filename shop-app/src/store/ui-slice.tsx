@@ -31,6 +31,12 @@ const uiSlice = createSlice({
         message: action.payload.message,
       };
     },
+    closeCart(state) {
+      state.cartIsVisible = false;
+    },
+    closeWishlist(state) {
+      state.wishlistIsVisible = false;
+    },
   },
 });
 

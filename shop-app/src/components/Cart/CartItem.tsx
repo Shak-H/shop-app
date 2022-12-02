@@ -31,8 +31,8 @@ const CartItem: React.FC<{
   };
 
   return (
-    <li className={classes.cartItem}>
-      <header>
+    <li className={classes["cart-item"]}>
+      <header className={classes.cartItem__header}>
         <h3 className={classes.cartItem__heading}>{title}</h3>
         <div className={classes.cartItem__quantity}>
           x <span>{quantity}</span>
