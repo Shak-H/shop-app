@@ -4,24 +4,29 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface CartState {
   items: any[];
   totalQuantity: number;
-  totalAmount: number;
+  changed: boolean;
 }
 
 // Define the initial state using that type
 const initialState: CartState = {
   items: [],
   totalQuantity: 0,
-  totalAmount: 0,
+  changed: false,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    replaceCart(state, action) {
+      state.totalQuantity = action.payload.totalQuantity;
+      state.items = action.payload.items;
+    },
     addItemToCart(state, action: PayloadAction<any>) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity++;
+      state.changed = true;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -39,6 +44,7 @@ const cartSlice = createSlice({
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       state.totalQuantity--;
+      state.changed = true;
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== id);
       } else {

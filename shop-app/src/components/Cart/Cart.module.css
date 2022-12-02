@@ -1,17 +1,22 @@
 .cart {
   margin: auto;
-  max-width: 30rem;
+  height: 100%;
+  width: 100%;
   background-color: #313131;
   color: white;
 }
 
-.cart h2 {
+.cart__heading {
   font-size: 1.25rem;
   margin: 0.5rem 0;
+  text-align: center;
 }
 
-.cart ul {
+.cart__list {
   list-style: none;
   padding: 0;
   margin: 0;
+
+  display: flex;
+  flex-direction: column;
 }

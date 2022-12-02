@@ -1,15 +1,22 @@
-.item h3 {
+.product {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.product__title {
   margin: 0.5rem 0;
   font-size: 1.25rem;
 }
 
-.item header {
+.product__header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
-.price {
+.product__price {
   border-radius: 30px;
   padding: 0.15rem 1.5rem;
   background-color: #3a3a3a;
@@ -17,11 +24,12 @@
   font-size: 1.5rem;
 }
 
-.item p {
-  color: #3a3a3a;
+.product__image {
+  height: 100px;
+  width: fit-content;
 }
 
-.actions {
+.product__buttons {
   display: flex;
   justify-content: flex-end;
 }

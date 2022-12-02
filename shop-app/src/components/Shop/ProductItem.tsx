@@ -38,14 +38,14 @@ const ProductItem: React.FC<{
   };
 
   return (
-    <li className={classes.item}>
+    <li className={classes.product}>
       <Card>
-        <header>
-          <h3>{title}</h3>
-          <div className={classes.price}>£{price.toFixed(2)}</div>
+        <header className={classes.product__header}>
+          <h3 className={classes.title}>{title}</h3>
         </header>
-        <img src={image} alt={title} />
-        <div className={classes.actions}>
+        <img src={image} alt={title} className={classes.product__image} />
+        <div className={classes.product__price}>£{price.toFixed(2)}</div>
+        <div className={classes.product__buttons}>
           <Button onClick={addToCartHandler}>Add to Cart</Button>
           <Button onClick={addToWishlistHandler}>Add to Wishlist</Button>
         </div>

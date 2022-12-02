@@ -1,12 +1,16 @@
-.products h2 {
+.products__heading {
   color: white;
   margin: 2rem auto;
   text-align: center;
   text-transform: uppercase;
 }
 
-.products ul {
+.products__list {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

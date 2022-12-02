@@ -31,21 +31,31 @@ const CartItem: React.FC<{
   };
 
   return (
-    <li className={classes.item}>
+    <li className={classes.cartItem}>
       <header>
-        <h3>{title}</h3>
-        <div className={classes.price}>
-          ${total.toFixed(2)}{" "}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
-        </div>
-      </header>
-      <div className={classes.details}>
-        <div className={classes.quantity}>
+        <h3 className={classes.cartItem__heading}>{title}</h3>
+        <div className={classes.cartItem__quantity}>
           x <span>{quantity}</span>
         </div>
-        <div className={classes.actions}>
-          <button onClick={removeItemHandler}>-</button>
-          <button onClick={addItemHandler}>+</button>
+      </header>
+      <div className={classes.cartItem__totalPrice}>
+        £{total.toFixed(2)}{" "}
+        <span className={classes.cartItem__price}>
+          (${price.toFixed(2)}/item)
+        </span>
+      </div>
+
+      <div className={classes.cartItem__details}>
+        <div className={classes.cartItem__buttons}>
+          <button
+            className={classes.cartItem__button}
+            onClick={removeItemHandler}
+          >
+            -
+          </button>
+          <button className={classes.cartItem__button} onClick={addItemHandler}>
+            +
+          </button>
         </div>
       </div>
     </li>

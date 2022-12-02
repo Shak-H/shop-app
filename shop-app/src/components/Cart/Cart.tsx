@@ -13,8 +13,8 @@ const Cart = () => {
   return (
     <Card>
       <div className={classes.cart}>
-        <h2>Your Shopping Cart</h2>
-        <ul>
+        <h2 className={classes.cart__heading}>Your Shopping Cart</h2>
+        <ul className={classes.cart__list}>
           {cartItems.map((item) => (
             <CartItem
               key={item.id}
