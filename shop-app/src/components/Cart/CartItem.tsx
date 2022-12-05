@@ -10,11 +10,12 @@ const CartItem: React.FC<{
     total: number;
     price: number;
     id: string;
+    image: string;
   };
 }> = (props) => {
   const dispatch = useDispatch();
 
-  const { title, quantity, total, price, id } = props.item;
+  const { title, quantity, total, price, id, image } = props.item;
 
   const removeItemHandler = () => {
     dispatch(cartActions.removeItemFromCart(id));
@@ -26,34 +27,39 @@ const CartItem: React.FC<{
         id,
         title,
         price,
+        image,
       })
     );
   };
 
   return (
     <li className={classes["cart-item"]}>
-      <header className={classes.cartItem__header}>
-        <h3 className={classes.cartItem__heading}>{title}</h3>
-        <div className={classes.cartItem__quantity}>
+      <header className={classes["cart-item__header"]}>
+        <h3 className={classes["cart-item__heading"]}>{title}</h3>
+        <div className={classes["cart-item__quantity"]}>
           x <span>{quantity}</span>
         </div>
       </header>
-      <div className={classes.cartItem__totalPrice}>
+      <img src={image} alt={title} className={classes["cart-item__image"]} />
+      <div className={classes["cart-item__totalPrice"]}>
         £{total.toFixed(2)}{" "}
-        <span className={classes.cartItem__price}>
+        <span className={classes["cart-item__price"]}>
           (${price.toFixed(2)}/item)
         </span>
       </div>
 
-      <div className={classes.cartItem__details}>
-        <div className={classes.cartItem__buttons}>
+      <div className={classes["cart-item__details"]}>
+        <div className={classes["cart-item__buttons"]}>
           <button
-            className={classes.cartItem__button}
+            className={classes["cart-item__button"]}
             onClick={removeItemHandler}
           >
             -
           </button>
-          <button className={classes.cartItem__button} onClick={addItemHandler}>
+          <button
+            className={classes["cart-item__button"]}
+            onClick={addItemHandler}
+          >
             +
           </button>
         </div>

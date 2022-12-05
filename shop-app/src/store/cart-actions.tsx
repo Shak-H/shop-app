@@ -67,6 +67,7 @@ export const sendCartData = (cart: any) => {
 
     try {
       await sendRequest();
+
       dispatch(
         uiActions.showNotification({
           status: "success",

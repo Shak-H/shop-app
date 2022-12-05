@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import WishlistItem from "./WishlistItem";
 
-import Card from "../UI/Card";
 import Modal from "../UI/Modal";
 
 import classes from "./Wishlist.module.css";
@@ -19,10 +18,10 @@ const Wishlist = () => {
   };
 
   return (
-    <Modal>
-      <Card className={classes.wishlist}>
-        <h2>Your Wishlist</h2>
-        <ul>
+    <Modal hideModal={hideWishlist}>
+      <div className={classes.wishlist}>
+        <h2 className={classes.wishlist__heading}>Your Wishlist</h2>
+        <ul className={classes.wishlist__list}>
           {wishlistItems.map((item) => (
             <WishlistItem
               key={item.id}
@@ -32,12 +31,13 @@ const Wishlist = () => {
                 price: item.price,
                 quantity: item.quantity,
                 total: item.totalPrice,
+                image: item.image,
               }}
             />
           ))}
         </ul>
         <button onClick={hideWishlist}>Close</button>
-      </Card>
+      </div>
     </Modal>
   );
 };

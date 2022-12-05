@@ -11,11 +11,12 @@ const WishlistItem: React.FC<{
     id: string;
     quantity: number;
     total: number;
+    image: string;
   };
 }> = (props) => {
   const dispatch = useDispatch();
 
-  const { title, price, id, quantity, total } = props.item;
+  const { title, price, id, quantity, total, image } = props.item;
 
   const removeItemHandler = () => {
     dispatch(wishlistActions.removeItemFromWishlist(id));
@@ -29,20 +30,37 @@ const WishlistItem: React.FC<{
         price,
         quantity,
         total,
+        image,
       })
     );
   };
 
   return (
-    <li className={classes.item}>
-      <header>
-        <h3>{title}</h3>
-        <div className={classes.price}>£{price.toFixed(2)} </div>
-      </header>
-      <div className={classes.details}>
-        <div className={classes.actions}>
-          <button onClick={removeItemHandler}>-</button>
-          <button onClick={addItemHandler}>+</button>
+    <li className={classes["wishlist-item"]}>
+      <h3 className={classes["wishlist-item__title"]}>{title}</h3>
+
+      <img
+        src={image}
+        alt={title}
+        className={classes["wishlist-item__image"]}
+      />
+      <div className={classes["wishlist-item__price"]}>
+        £{price.toFixed(2)}{" "}
+      </div>
+      <div className={classes["wishlist-item__details"]}>
+        <div className={classes["wishlist-item__buttons"]}>
+          <button
+            className={classes["wishlist-item__button"]}
+            onClick={removeItemHandler}
+          >
+            -
+          </button>
+          <button
+            className={classes["wishlist-item__button"]}
+            onClick={addItemHandler}
+          >
+            +
+          </button>
         </div>
       </div>
     </li>

@@ -32,6 +32,7 @@ const wishlistSlice = createSlice({
           id: newItem.id,
           price: newItem.price,
           name: newItem.title,
+          image: newItem.image,
         });
       }
     },

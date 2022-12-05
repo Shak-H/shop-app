@@ -1,9 +1,14 @@
 .cart {
-  margin: auto;
   height: 100%;
   width: 100%;
   background-color: #313131;
   color: white;
+  margin: 1rem auto;
+  border-radius: 6px;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .cart__heading {

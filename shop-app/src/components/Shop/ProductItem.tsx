@@ -23,6 +23,7 @@ const ProductItem: React.FC<{
         id,
         title,
         price,
+        image,
       })
     );
   };
@@ -33,16 +34,15 @@ const ProductItem: React.FC<{
         id,
         title,
         price,
+        image,
       })
     );
   };
 
   return (
     <Card className={classes.product}>
-      <li>
-        <header className={classes.product__header}>
-          <h3 className={classes.title}>{title}</h3>
-        </header>
+      <li className={classes.product__item}>
+        <h3 className={classes.product__title}>{title}</h3>
         <img src={image} alt={title} className={classes.product__image} />
         <div className={classes.product__price}>£{price.toFixed(2)}</div>
         <div className={classes.product__buttons}>

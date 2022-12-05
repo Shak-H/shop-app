@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CartItem from "./CartItem";
 
-import Card from "../UI/Card";
 import Modal from "../UI/Modal";
 
 import classes from "./Cart.module.css";
 import { uiActions } from "../../store/ui-slice";
+import { cartActions } from "../../store/cart-slice";
 import { RootState } from "../../store";
 
 const Cart = () => {
@@ -18,9 +18,13 @@ const Cart = () => {
     dispatch(uiActions.closeCart());
   };
 
+  const clearCart = () => {
+    dispatch(cartActions.clearCart());
+  };
+
   return (
-    <Modal hideCart={hideCart}>
-      <Card className={classes.cart}>
+    <Modal hideModal={hideCart}>
+      <div className={classes.cart}>
         <h2 className={classes.cart__heading}>Your Shopping Cart</h2>
         <ul className={classes.cart__list}>
           {cartItems.map((item) => (
@@ -32,13 +36,15 @@ const Cart = () => {
                 quantity: item.quantity,
                 total: item.totalPrice,
                 price: item.price,
+                image: item.image,
               }}
             />
           ))}
         </ul>
         <button onClick={hideCart}>Close</button>
         <button>Checkout</button>
-      </Card>
+        <button onClick={clearCart}>Clear Cart</button>
+      </div>
     </Modal>
   );
 };
