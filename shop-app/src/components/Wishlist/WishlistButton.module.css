@@ -1,19 +1,29 @@
-.button {
+.wishlist-btn {
   background-color: transparent;
   border-color: #1ad1b9;
   color: #1ad1b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button:hover,
-.button:active {
+.wishlist-btn:hover,
+.wishlist-btn:active {
   color: white;
 }
 
-.button span {
+.wishlist-btn span {
   margin: 0 0.5rem;
+  text-transform: uppercase;
+  line-height: 1.5;
 }
 
-.badge {
+.wishlist-btn__icon {
+  height: 20px;
+  width: 20px;
+}
+
+.wishlist-btn__badge {
   background-color: #1ad1b9;
   border-radius: 30px;
   padding: 0.15rem 1.25rem;

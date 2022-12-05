@@ -5,6 +5,8 @@ import { uiActions } from "../../store/ui-slice";
 import classes from "./WishlistButton.module.css";
 import { RootState } from "../../store";
 
+import { FaHeart } from "react-icons/fa";
+
 const WishlistButton = () => {
   const dispatch = useDispatch();
   const wishlistQuantity = useSelector(
@@ -16,9 +18,11 @@ const WishlistButton = () => {
   };
 
   return (
-    <button className={classes.button} onClick={toggleWishlistHandler}>
-      <span>Wishlist</span>
-      <span className={classes.badge}>{wishlistQuantity}</span>
+    <button className={classes["wishlist-btn"]} onClick={toggleWishlistHandler}>
+      <span>
+        Wishlist <FaHeart className={classes["wishlist-btn__icon"]} />
+      </span>
+      <span className={classes["wishlist-btn__badge"]}>{wishlistQuantity}</span>
     </button>
   );
 };

@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: white;
 }
 
 button {
@@ -27,5 +27,6 @@ button:hover,
 button:active {
   background-color: #1ac5d1;
   border-color: #1ac5d1;
-  color: white;
+  color: #3a3a3a;
+  cursor: pointer;
 }

@@ -36,7 +36,9 @@ const Wishlist = () => {
             />
           ))}
         </ul>
-        <button onClick={hideWishlist}>Close</button>
+        <span className={classes.wishlist__close} onClick={hideWishlist}>
+          &times;
+        </span>
       </div>
     </Modal>
   );

@@ -17,9 +17,11 @@
   padding-bottom: 2%;
 }
 
-.cart-item__heading {
+.cart-item__title {
   margin: 0 0 0.5rem 0;
   font-size: 1.3rem;
+  text-align: center;
+  width: 90%;
 }
 
 .cart-item__quantity {

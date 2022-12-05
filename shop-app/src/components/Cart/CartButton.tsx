@@ -4,6 +4,8 @@ import { uiActions } from "../../store/ui-slice";
 import classes from "./CartButton.module.css";
 import { RootState } from "../../store";
 
+import { ImCart } from "react-icons/im";
+
 const CartButton = () => {
   const dispatch = useDispatch();
   const cartQuantity = useSelector(
@@ -15,9 +17,11 @@ const CartButton = () => {
   };
 
   return (
-    <button className={classes.button} onClick={toggleCartHandler}>
-      <span>My Cart</span>
-      <span className={classes.badge}>{cartQuantity}</span>
+    <button className={classes["cart-btn"]} onClick={toggleCartHandler}>
+      <span>
+        Cart <ImCart className={classes["cart-btn__icon"]} />
+      </span>
+      <span className={classes["cart-btn__badge"]}>{cartQuantity}</span>
     </button>
   );
 };

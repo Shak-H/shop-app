@@ -7,6 +7,8 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./ProductItem.module.css";
 
+import { FaRegHeart, FaHeart, FaCartPlus } from "react-icons/fa";
+
 const ProductItem: React.FC<{
   title: string;
   price: number;
@@ -46,8 +48,12 @@ const ProductItem: React.FC<{
         <img src={image} alt={title} className={classes.product__image} />
         <div className={classes.product__price}>£{price.toFixed(2)}</div>
         <div className={classes.product__buttons}>
-          <Button onClick={addToCartHandler}>Add to Cart</Button>
-          <Button onClick={addToWishlistHandler}>Add to Wishlist</Button>
+          <Button onClick={addToCartHandler}>
+            <FaCartPlus className={classes.product__icon} />
+          </Button>
+          <Button onClick={addToWishlistHandler}>
+            <FaRegHeart className={classes.product__icon} />
+          </Button>
         </div>
       </li>
     </Card>

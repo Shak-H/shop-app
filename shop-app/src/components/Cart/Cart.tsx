@@ -2,12 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CartItem from "./CartItem";
 
+import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 
 import classes from "./Cart.module.css";
 import { uiActions } from "../../store/ui-slice";
 import { cartActions } from "../../store/cart-slice";
 import { RootState } from "../../store";
+
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { ImBin, ImCreditCard } from "react-icons/im";
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -41,9 +45,15 @@ const Cart = () => {
             />
           ))}
         </ul>
-        <button onClick={hideCart}>Close</button>
-        <button>Checkout</button>
-        <button onClick={clearCart}>Clear Cart</button>
+        <span className={classes.cart__close} onClick={hideCart}>
+          <AiOutlineCloseSquare />
+        </span>
+        <Button>
+          Checkout <ImCreditCard className={classes.cart__icon} />
+        </Button>
+        <Button onClick={clearCart}>
+          Empty <ImBin className={classes.cart__icon} />
+        </Button>
       </div>
     </Modal>
   );
