@@ -54,3 +54,11 @@
   background-color: #4b4b4b;
   color: white;
 }
+
+.wishlist-item__button--added {
+  background-color: #4b4b4b;
+  border: 1px solid white;
+  margin-left: 0.5rem;
+  padding: 0.15rem 1rem;
+  color: white;
+}

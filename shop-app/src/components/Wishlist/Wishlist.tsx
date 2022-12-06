@@ -8,6 +8,8 @@ import classes from "./Wishlist.module.css";
 import { uiActions } from "../../store/ui-slice";
 import { RootState } from "../../store";
 
+import { AiOutlineCloseSquare } from "react-icons/ai";
+
 const Wishlist = () => {
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
 
@@ -37,7 +39,7 @@ const Wishlist = () => {
           ))}
         </ul>
         <span className={classes.wishlist__close} onClick={hideWishlist}>
-          &times;
+          <AiOutlineCloseSquare />
         </span>
       </div>
     </Modal>

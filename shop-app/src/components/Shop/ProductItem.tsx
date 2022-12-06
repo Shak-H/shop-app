@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { cartActions } from "../../store/cart-slice";
@@ -17,6 +17,8 @@ const ProductItem: React.FC<{
 }> = (props) => {
   const dispatch = useDispatch();
 
+  const [isFavourite, setIsFavourite] = useState(false);
+
   const { title, price, image, id } = props;
 
   const addToCartHandler = () => {
@@ -31,14 +33,20 @@ const ProductItem: React.FC<{
   };
 
   const addToWishlistHandler = () => {
-    dispatch(
-      wishlistActions.addItemToWishlist({
-        id,
-        title,
-        price,
-        image,
-      })
-    );
+    if (!isFavourite) {
+      dispatch(
+        wishlistActions.addItemToWishlist({
+          id,
+          title,
+          price,
+          image,
+        })
+      );
+      setIsFavourite(true);
+    } else {
+      dispatch(wishlistActions.removeItemFromWishlist(id));
+      setIsFavourite(false);
+    }
   };
 
   return (
@@ -52,7 +60,11 @@ const ProductItem: React.FC<{
             <FaCartPlus className={classes.product__icon} />
           </Button>
           <Button onClick={addToWishlistHandler}>
-            <FaRegHeart className={classes.product__icon} />
+            {isFavourite ? (
+              <FaHeart className={classes.product__icon} />
+            ) : (
+              <FaRegHeart className={classes.product__icon} />
+            )}
           </Button>
         </div>
       </li>

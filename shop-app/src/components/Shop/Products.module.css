@@ -1,5 +1,9 @@
+.products {
+  margin-top: 8%;
+}
+
 .products__heading {
-  color: white;
+  color: #3a3a3a;
   margin: 2rem auto;
   text-align: center;
   text-transform: uppercase;

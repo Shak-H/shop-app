@@ -13,10 +13,13 @@
   align-items: center;
 }
 
-.button:hover,
-.button:active {
+.button:hover {
   background-color: #1ac5d1;
   border-color: #1ac5d1;
   color: white;
   cursor: pointer;
+}
+
+.button:active {
+  transform: translateY(-5px);
 }

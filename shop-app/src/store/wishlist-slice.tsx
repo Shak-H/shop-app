@@ -43,7 +43,6 @@ const wishlistSlice = createSlice({
       state.changed = true;
       if (existingItem) {
         existingItem.quantity--;
-
         state.items = state.items.filter((item) => item.id !== id);
       }
     },
