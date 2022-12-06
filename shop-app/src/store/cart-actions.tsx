@@ -61,26 +61,34 @@ export const sendCartData = (cart: any) => {
       );
 
       if (!response.ok) {
-        throw new Error("Error when adding to Cart");
+        throw new Error("Error when updating Cart");
       }
     };
 
     try {
+      let notificationTimer;
+      clearTimeout(notificationTimer);
+
       await sendRequest();
 
       dispatch(
         uiActions.showNotification({
           status: "success",
           title: "Success!",
-          message: "Added to Cart!",
+          message: "Cart Updated!",
         })
+      );
+
+      notificationTimer = setTimeout(
+        () => dispatch(uiActions.removeNotification()),
+        1000
       );
     } catch (error) {
       dispatch(
         uiActions.showNotification({
           status: "error",
           title: "Error!",
-          message: "Error when adding to Cart!",
+          message: "Error when updating Cart!",
         })
       );
     }

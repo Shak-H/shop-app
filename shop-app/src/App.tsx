@@ -56,6 +56,8 @@ function App() {
     }
   }, [wishlist, dispatch]);
 
+  console.log(notification);
+
   return (
     <>
       {notification && (

@@ -61,25 +61,33 @@ export const sendWishlistData = (wishlist: any) => {
       );
 
       if (!response.ok) {
-        throw new Error("Error when adding to Wishlist");
+        throw new Error("Error when updating Wishlist");
       }
     };
 
     try {
+      let notificationTimer;
+      clearTimeout(notificationTimer);
+
       await sendRequest();
       dispatch(
         uiActions.showNotification({
           status: "success",
           title: "Success!",
-          message: "Added to Wishlist!",
+          message: "Wishlist Updated!",
         })
+      );
+
+      notificationTimer = setTimeout(
+        () => dispatch(uiActions.removeNotification()),
+        1000
       );
     } catch (error) {
       dispatch(
         uiActions.showNotification({
           status: "error",
           title: "Error!",
-          message: "Error when adding to Wishlist!",
+          message: "Error when updating Wishlist!",
         })
       );
     }

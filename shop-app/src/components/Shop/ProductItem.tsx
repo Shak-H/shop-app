@@ -9,12 +9,7 @@ import classes from "./ProductItem.module.css";
 
 import { FaRegHeart, FaHeart, FaCartPlus } from "react-icons/fa";
 
-const ProductItem: React.FC<{
-  title: string;
-  price: number;
-  image: string;
-  id: string;
-}> = (props) => {
+const ProductItem = (props: any) => {
   const dispatch = useDispatch();
 
   const [isFavourite, setIsFavourite] = useState(false);
