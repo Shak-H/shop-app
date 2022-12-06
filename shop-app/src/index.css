@@ -26,8 +26,8 @@ button {
 
 button:hover,
 button:active {
-  background-color: #1ac5d1;
-  border-color: #1ac5d1;
+  background-color: #da291c;
+  border-color: #da291c;
   color: #3a3a3a;
   cursor: pointer;
 }

@@ -1,12 +1,12 @@
 .button {
   border-radius: 30px;
+  border: solid 3px #da291c;
   padding: 0.15rem 1.5rem;
   background-color: white;
   color: #3a3a3a;
   font-size: 1.2rem;
   margin: 0.5rem;
   text-align: center;
-  /* width: 20%; */
 
   display: flex;
   justify-content: center;
@@ -14,8 +14,8 @@
 }
 
 .button:hover {
-  background-color: #1ac5d1;
-  border-color: #1ac5d1;
+  background-color: #da291c;
+  border-color: #da291c;
   color: white;
   cursor: pointer;
 }

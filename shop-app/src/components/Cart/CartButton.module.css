@@ -1,7 +1,7 @@
 .cart-btn {
   background-color: transparent;
-  border-color: #1ad1b9;
-  color: #1ad1b9;
+  border-color: #da291c;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,8 +24,8 @@
 }
 
 .cart-btn__badge {
-  background-color: #1ad1b9;
+  background-color: #da291c;
   border-radius: 30px;
   padding: 0.15rem 1.25rem;
-  color: #1d1d1d;
+  color: white;
 }
