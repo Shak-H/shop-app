@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux";
 
+import Button from "../UI/Button";
+
 import classes from "./WishlistItem.module.css";
 import { wishlistActions } from "../../store/wishlist-slice";
 import { cartActions } from "../../store/cart-slice";
+
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const WishlistItem: React.FC<{
   item: {
@@ -49,18 +53,18 @@ const WishlistItem: React.FC<{
       </div>
       <div className={classes["wishlist-item__details"]}>
         <div className={classes["wishlist-item__buttons"]}>
-          <button
+          <Button
             className={classes["wishlist-item__button"]}
             onClick={removeItemHandler}
           >
-            -
-          </button>
-          <button
+            <FaMinus className={classes["wishlist-item__icon"]} />
+          </Button>
+          <Button
             className={classes["wishlist-item__button"]}
             onClick={addItemHandler}
           >
-            +
-          </button>
+            <FaPlus className={classes["wishlist-item__icon"]} />
+          </Button>
         </div>
       </div>
     </li>

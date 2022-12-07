@@ -26,3 +26,9 @@
 .success {
   background-color: #1ad1b9;
 }
+
+@media only screen and (max-width: 500px) {
+  .notification {
+    top: 4rem;
+  }
+}

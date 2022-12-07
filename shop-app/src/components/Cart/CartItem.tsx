@@ -1,7 +1,11 @@
 import { useDispatch } from "react-redux";
 
+import Button from "../UI/Button";
+
 import classes from "./CartItem.module.css";
 import { cartActions } from "../../store/cart-slice";
+
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const CartItem: React.FC<{
   item: {
@@ -50,18 +54,18 @@ const CartItem: React.FC<{
 
       <div className={classes["cart-item__details"]}>
         <div className={classes["cart-item__buttons"]}>
-          <button
+          <Button
             className={classes["cart-item__button"]}
             onClick={removeItemHandler}
           >
-            -
-          </button>
-          <button
+            <FaMinus className={classes["cart-item__icon"]} />
+          </Button>
+          <Button
             className={classes["cart-item__button"]}
             onClick={addItemHandler}
           >
-            +
-          </button>
+            <FaPlus className={classes["cart-item__icon"]} />
+          </Button>
         </div>
       </div>
     </li>
