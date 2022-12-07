@@ -23,7 +23,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-
   display: flex;
   flex-flow: row nowrap;
 }
@@ -49,6 +48,34 @@
   display: none;
 }
 
+@media only screen and (max-width: 1100px) {
+  .header {
+    padding: 0 5%;
+  }
+
+  .header__nav {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .header__nav {
+    width: 65%;
+  }
+
+  .header__title {
+    font-size: 1.8rem;
+  }
+
+  .header__list {
+    padding: 0 5%;
+  }
+
+  .header__list-item {
+    padding: 8px 5px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .header {
     height: 4rem;
@@ -56,6 +83,7 @@
 
   .header__title {
     font-size: 1.5rem;
+    width: inherit;
   }
 
   .header__list {

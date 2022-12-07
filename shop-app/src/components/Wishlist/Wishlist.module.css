@@ -42,6 +42,12 @@
 }
 
 .wishlist__close:hover {
-  color: #DA291C;
+  color: #da291c;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .wishlist__close {
+    right: 2rem;
+  }
 }

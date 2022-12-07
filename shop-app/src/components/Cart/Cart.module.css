@@ -42,10 +42,28 @@
 }
 
 .cart__close:hover {
-  color:  #DA291C;
+  color: #da291c;
   cursor: pointer;
 }
 
 .cart__icon {
   margin-left: 1.5%;
+}
+
+@media only screen and (max-width: 500px) {
+  .cart__heading {
+    font-size: 1rem;
+  }
+
+  .cart__close {
+    font-size: 1.7rem;
+    right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .cart__close {
+    font-size: 1.5rem;
+    right: 1.7rem;
+  }
 }
