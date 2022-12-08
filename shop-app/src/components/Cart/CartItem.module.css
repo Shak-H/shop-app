@@ -10,6 +10,7 @@
   align-items: center;
   border: solid 5px #da291c;
   border-radius: 30px;
+  text-align: center;
 }
 
 .cart-item__header {
@@ -78,6 +79,7 @@
 }
 
 .cart-item__button:hover,
+.cart-item__button:focus,
 .acart-item__button:active {
   background-color: #4b4b4b;
   color: white;

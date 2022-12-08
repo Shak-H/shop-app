@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ProductItem from "./ProductItem";
 
 import classes from "./Products.module.css";
 
+interface ProductsArray {
+  key: number | string;
+  id: number | string;
+  title: string;
+  price: string;
+  image: string;
+}
+
 const Products = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<ProductsArray[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,14 +37,14 @@ const Products = () => {
 
   return (
     <section className={classes.products}>
-      <h2 className={classes.products__heading}>Buy your favorite products</h2>
+      <h2 className={classes.products__heading}>Shop till you DROP!!</h2>
       <ul className={classes.products__list}>
         {products.map((product) => (
           <ProductItem
             key={product.id}
             id={product.id}
             title={product.title}
-            price={product.price}
+            price={+product.price}
             image={product.image}
           />
         ))}

@@ -5,12 +5,13 @@
   background-color: #3f3f3f;
   padding: 1rem;
   width: 30%;
-
+  color: white;
+  text-align: center;
   display: flex;
   flex-direction: column;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .card {
     width: 45%;
   }

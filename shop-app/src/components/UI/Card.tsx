@@ -1,7 +1,12 @@
 import classes from "./Card.module.css";
 
-const Card = (props: any) => {
-  return <section className={classes.card}>{props.children}</section>;
+type CardProps = {
+  children: React.ReactNode;
+  className: string;
+};
+
+const Card = ({ children }: CardProps) => {
+  return <section className={classes.card}>{children}</section>;
 };
 
 export default Card;

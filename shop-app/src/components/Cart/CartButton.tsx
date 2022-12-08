@@ -17,7 +17,11 @@ const CartButton = () => {
   };
 
   return (
-    <button className={classes["cart-btn"]} onClick={toggleCartHandler}>
+    <button
+      className={classes["cart-btn"]}
+      onClick={toggleCartHandler}
+      aria-label="Button to open Cart"
+    >
       <span>
         Cart <ImCart className={classes["cart-btn__icon"]} />
       </span>

@@ -9,7 +9,7 @@ const MainHeader = () => {
   return (
     <header className={classes.header}>
       <h1 className={classes.header__title}>Shak Sports</h1>
-      <nav className={classes.header__nav}>
+      <nav className={classes.header__nav} role="navigation">
         <ul className={classes.header__list}>
           <li className={classes["header__list-item"]}>
             <WishlistButton />

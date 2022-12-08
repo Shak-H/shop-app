@@ -47,7 +47,12 @@ const Burger = () => {
           style={hamburgerTransform3}
         />
       </div>
-      <RightNav open={open} />
+      <RightNav
+        open={open}
+        role="button"
+        aria-label="Button to open Navigation"
+        tabindex="1"
+      />
     </>
   );
 };

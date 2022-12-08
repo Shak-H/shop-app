@@ -1,10 +1,12 @@
 import classes from "./Notification.module.css";
 
-const Notification: React.FC<{
+type NotificationProps = {
   status: string;
   title: string;
   message: string;
-}> = (props) => {
+};
+
+const Notification = (props: NotificationProps) => {
   let specialClasses = "";
 
   if (props.status === "error") {

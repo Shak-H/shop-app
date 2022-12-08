@@ -8,6 +8,7 @@
 }
 
 .wishlist-btn:hover,
+.wishlist-btn:focus,
 .wishlist-btn:active {
   color: white;
 }
@@ -38,5 +39,26 @@
   .wishlist-btn__icon {
     height: 15px;
     width: 15px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .wishlist-btn {
+    border-color: white;
+    margin-left: 2%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .wishlist-btn__badge {
+    background-color: #3a3a3a;
+    text-align: center;
+    padding: 0.15rem 1rem;
+  }
+
+  .wishlist-btn:hover,
+  .wishlist-btn:active {
+    color: #3a3a3a;
   }
 }

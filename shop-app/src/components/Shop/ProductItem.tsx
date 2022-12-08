@@ -9,7 +9,14 @@ import classes from "./ProductItem.module.css";
 
 import { FaRegHeart, FaHeart, FaCartPlus } from "react-icons/fa";
 
-const ProductItem = (props: any) => {
+type ProductItemProps = {
+  title: string;
+  price: number;
+  id: number | string;
+  image: string;
+};
+
+const ProductItem = (props: ProductItemProps) => {
   const dispatch = useDispatch();
 
   const [isFavourite, setIsFavourite] = useState(false);
@@ -48,13 +55,31 @@ const ProductItem = (props: any) => {
     <Card className={classes.product}>
       <li className={classes.product__item}>
         <h3 className={classes.product__title}>{title}</h3>
-        <img src={image} alt={title} className={classes.product__image} />
+        <figure>
+          <img
+            src={image}
+            alt={title}
+            aria-labelledby="product__image--caption"
+            className={classes.product__image}
+          />
+          <figcaption id="product__image--caption">Product Image</figcaption>
+        </figure>
         <div className={classes.product__price}>£{price.toFixed(2)}</div>
         <div className={classes.product__buttons}>
-          <Button onClick={addToCartHandler}>
+          <Button
+            onClick={addToCartHandler}
+            aria-label="Button to add to Cart"
+            role="button"
+            tabindex="1"
+          >
             <FaCartPlus className={classes.product__icon} />
           </Button>
-          <Button onClick={addToWishlistHandler}>
+          <Button
+            onClick={addToWishlistHandler}
+            aria-label="Button to add to Wishlist"
+            role="button"
+            tabindex="2"
+          >
             {isFavourite ? (
               <FaHeart className={classes.product__icon} />
             ) : (

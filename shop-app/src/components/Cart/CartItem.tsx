@@ -7,19 +7,21 @@ import { cartActions } from "../../store/cart-slice";
 
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-const CartItem: React.FC<{
+interface CartItemProps {
   item: {
     title: string;
     quantity: number;
     total: number;
     price: number;
-    id: string;
+    id: any;
     image: string;
   };
-}> = (props) => {
+}
+
+const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useDispatch();
 
-  const { title, quantity, total, price, id, image } = props.item;
+  const { title, quantity, total, price, id, image } = item;
 
   const removeItemHandler = () => {
     dispatch(cartActions.removeItemFromCart(id));
@@ -44,7 +46,15 @@ const CartItem: React.FC<{
           x <span>{quantity}</span>
         </div>
       </header>
-      <img src={image} alt={title} className={classes["cart-item__image"]} />
+      <figure>
+        <img
+          src={image}
+          alt={title}
+          className={classes["cart-item__image"]}
+          aria-labelledby="cart-item__image--caption"
+        />
+        <figcaption id="cart-item__image--caption">Product Image</figcaption>
+      </figure>
       <div className={classes["cart-item__totalPrice"]}>
         £{total.toFixed(2)}{" "}
         <span className={classes["cart-item__price"]}>
@@ -57,12 +67,18 @@ const CartItem: React.FC<{
           <Button
             className={classes["cart-item__button"]}
             onClick={removeItemHandler}
+            aria-label="Button to remove from Cart"
+            role="button"
+            tabindex="1"
           >
             <FaMinus className={classes["cart-item__icon"]} />
           </Button>
           <Button
             className={classes["cart-item__button"]}
             onClick={addItemHandler}
+            aria-label="Button to add another to Cart"
+            role="button"
+            tabindex="2"
           >
             <FaPlus className={classes["cart-item__icon"]} />
           </Button>

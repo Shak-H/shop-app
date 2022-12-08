@@ -48,10 +48,15 @@ const Cart = () => {
         <span className={classes.cart__close} onClick={hideCart}>
           <AiOutlineCloseSquare />
         </span>
-        <Button>
+        <Button aria-label="Button to checkout" role="button" tabindex="1">
           Checkout <ImCreditCard className={classes.cart__icon} />
         </Button>
-        <Button onClick={clearCart}>
+        <Button
+          onClick={clearCart}
+          aria-label="Button to empty Cart"
+          role="button"
+          tabindex="2"
+        >
           Empty <ImBin className={classes.cart__icon} />
         </Button>
       </div>

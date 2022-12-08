@@ -18,7 +18,11 @@ const WishlistButton = () => {
   };
 
   return (
-    <button className={classes["wishlist-btn"]} onClick={toggleWishlistHandler}>
+    <button
+      className={classes["wishlist-btn"]}
+      onClick={toggleWishlistHandler}
+      aria-label="Button to open Wishlist"
+    >
       <span>
         Wishlist <FaHeart className={classes["wishlist-btn__icon"]} />
       </span>

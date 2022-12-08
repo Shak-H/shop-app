@@ -38,7 +38,12 @@ const Wishlist = () => {
             />
           ))}
         </ul>
-        <span className={classes.wishlist__close} onClick={hideWishlist}>
+        <span
+          className={classes.wishlist__close}
+          onClick={hideWishlist}
+          role="button"
+          aria-label="Button to close Wishlist"
+        >
           <AiOutlineCloseSquare />
         </span>
       </div>

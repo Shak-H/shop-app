@@ -8,7 +8,7 @@ import { cartActions } from "../../store/cart-slice";
 
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-const WishlistItem: React.FC<{
+type WishlistItemProps = {
   item: {
     title: string;
     price: number;
@@ -17,10 +17,12 @@ const WishlistItem: React.FC<{
     total: number;
     image: string;
   };
-}> = (props) => {
+};
+
+const WishlistItem = ({ item }: WishlistItemProps) => {
   const dispatch = useDispatch();
 
-  const { title, price, id, quantity, total, image } = props.item;
+  const { title, price, id, quantity, total, image } = item;
 
   const removeItemHandler = () => {
     dispatch(wishlistActions.removeItemFromWishlist(id));
@@ -42,12 +44,17 @@ const WishlistItem: React.FC<{
   return (
     <li className={classes["wishlist-item"]}>
       <h3 className={classes["wishlist-item__title"]}>{title}</h3>
-
-      <img
-        src={image}
-        alt={title}
-        className={classes["wishlist-item__image"]}
-      />
+      <figure>
+        <img
+          src={image}
+          alt={title}
+          className={classes["wishlist-item__image"]}
+          aria-labelledby="wishlist-item__image--caption"
+        />
+        <figcaption id="wishlist-item__image--caption">
+          Product Image
+        </figcaption>
+      </figure>
       <div className={classes["wishlist-item__price"]}>
         £{price.toFixed(2)}{" "}
       </div>
@@ -56,12 +63,18 @@ const WishlistItem: React.FC<{
           <Button
             className={classes["wishlist-item__button"]}
             onClick={removeItemHandler}
+            aria-label="Button to remove from Wishlist"
+            role="button"
+            tabindex="0"
           >
             <FaMinus className={classes["wishlist-item__icon"]} />
           </Button>
           <Button
             className={classes["wishlist-item__button"]}
             onClick={addItemHandler}
+            aria-label="Button to add to Cart"
+            role="button"
+            tabindex="0"
           >
             <FaPlus className={classes["wishlist-item__icon"]} />
           </Button>

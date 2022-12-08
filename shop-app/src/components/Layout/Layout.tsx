@@ -1,10 +1,14 @@
 import MainHeader from "./MainHeader";
 
-const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <MainHeader />
-      <main>{props.children}</main>
+      <main>{children}</main>
     </>
   );
 };

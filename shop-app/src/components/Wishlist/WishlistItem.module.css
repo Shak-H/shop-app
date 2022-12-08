@@ -10,6 +10,7 @@
   align-items: center;
   border: solid 5px #da291c;
   border-radius: 30px;
+  text-align: center;
 }
 
 .wishlist-item__title {
@@ -59,6 +60,7 @@
 }
 
 .wishlist-item__button:hover,
+.wishlist-item__button:focus,
 .wishlist-item__button:active {
   background-color: #4b4b4b;
   color: white;
