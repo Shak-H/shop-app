@@ -10,7 +10,6 @@ interface WishlistState {
   }[];
   quantity: number;
   changed: boolean;
-  isFavourite: boolean;
 }
 
 // Define the initial state using that type
@@ -18,7 +17,6 @@ const initialState: WishlistState = {
   items: [],
   quantity: 0,
   changed: false,
-  isFavourite: false,
 };
 
 const wishlistSlice = createSlice({
@@ -35,7 +33,7 @@ const wishlistSlice = createSlice({
       if (!existingItem) {
         state.quantity++;
         state.changed = true;
-        state.isFavourite = true;
+
         state.items.push({
           id: newItem.id,
           price: newItem.price,
@@ -48,7 +46,7 @@ const wishlistSlice = createSlice({
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       state.changed = true;
-      state.isFavourite = false;
+
       if (existingItem) {
         state.quantity--;
         state.items = state.items.filter((item) => item.id !== id);

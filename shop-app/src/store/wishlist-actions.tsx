@@ -1,17 +1,17 @@
-import { AppDispatch } from "../store";
+import { AppDispatch } from '../store';
 
-import { uiActions } from "./ui-slice";
-import { wishlistActions } from "./wishlist-slice";
+import { uiActions } from './ui-slice';
+import { wishlistActions } from './wishlist-slice';
 
 export const fetchWishlistData = () => {
   return async (dispatch: AppDispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/wishlist.json"
+        'https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/wishlist.json'
       );
 
       if (!response.ok) {
-        throw new Error("Could not fetch Wishlist");
+        throw new Error('Could not fetch Wishlist');
       }
 
       const data = await response.json();
@@ -29,9 +29,9 @@ export const fetchWishlistData = () => {
     } catch (error) {
       dispatch(
         uiActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: "Error when fetching Wishlist!",
+          status: 'error',
+          title: 'Error!',
+          message: 'Error when fetching Wishlist!',
         })
       );
     }
@@ -42,17 +42,17 @@ export const sendWishlistData = (wishlist: any) => {
   return async (dispatch: AppDispatch) => {
     dispatch(
       uiActions.showNotification({
-        status: "pending",
-        title: "Sending...",
-        message: "Sending wishlist data",
+        status: 'pending',
+        title: 'Sending...',
+        message: 'Sending wishlist data',
       })
     );
 
     const sendRequest = async () => {
       const response = await fetch(
-        "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/wishlist.json",
+        'https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/wishlist.json',
         {
-          method: "PUT",
+          method: 'PUT',
           body: JSON.stringify({
             items: wishlist.items,
             quantity: wishlist.quantity,
@@ -61,7 +61,7 @@ export const sendWishlistData = (wishlist: any) => {
       );
 
       if (!response.ok) {
-        throw new Error("Error when updating Wishlist");
+        throw new Error('Error when updating Wishlist');
       }
     };
 
@@ -72,9 +72,9 @@ export const sendWishlistData = (wishlist: any) => {
       await sendRequest();
       dispatch(
         uiActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Wishlist Updated!",
+          status: 'success',
+          title: 'Success!',
+          message: 'Wishlist Updated!',
         })
       );
 
@@ -85,9 +85,9 @@ export const sendWishlistData = (wishlist: any) => {
     } catch (error) {
       dispatch(
         uiActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: "Error when updating Wishlist!",
+          status: 'error',
+          title: 'Error!',
+          message: 'Error when updating Wishlist!',
         })
       );
     }
