@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import WishlistItem from "./WishlistItem";
+import WishlistItem from './WishlistItem';
 
-import Modal from "../UI/Modal";
+import Modal from '../UI/Modal';
 
-import classes from "./Wishlist.module.css";
-import { uiActions } from "../../store/ui-slice";
-import { RootState } from "../../store";
+import classes from './Wishlist.module.css';
+import { uiActions } from '../../store/ui-slice';
+import { RootState } from '../../store';
 
-import { AiOutlineCloseSquare } from "react-icons/ai";
+import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 const Wishlist = () => {
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
@@ -31,8 +31,6 @@ const Wishlist = () => {
                 id: item.id,
                 title: item.name,
                 price: item.price,
-                quantity: item.quantity,
-                total: item.totalPrice,
                 image: item.image,
               }}
             />
@@ -46,6 +44,11 @@ const Wishlist = () => {
         >
           <AiOutlineCloseSquare />
         </span>
+        {wishlistItems.length <= 0 ? (
+          <p className={classes.wishlist__message}>Wishlist is empty</p>
+        ) : (
+          ''
+        )}
       </div>
     </Modal>
   );

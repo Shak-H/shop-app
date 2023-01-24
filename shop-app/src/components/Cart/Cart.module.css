@@ -50,6 +50,10 @@
   margin-left: 1.5%;
 }
 
+.cart__message {
+  text-align: center;
+}
+
 @media only screen and (max-width: 500px) {
   .cart__heading {
     font-size: 1rem;

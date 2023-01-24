@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { cartActions } from "../../store/cart-slice";
-import { wishlistActions } from "../../store/wishlist-slice";
-import Card from "../UI/Card";
-import Button from "../UI/Button";
-import classes from "./ProductItem.module.css";
+import { cartActions } from '../../store/cart-slice';
+import { wishlistActions } from '../../store/wishlist-slice';
+import Card from '../UI/Card';
+import Button from '../UI/Button';
+import classes from './ProductItem.module.css';
 
-import { FaRegHeart, FaHeart, FaCartPlus } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaCartPlus } from 'react-icons/fa';
 
 type ProductItemProps = {
   title: string;
@@ -55,7 +55,7 @@ const ProductItem = (props: ProductItemProps) => {
     <Card className={classes.product}>
       <li className={classes.product__item}>
         <h3 className={classes.product__title}>{title}</h3>
-        <figure>
+        <figure className={classes['product__image-container']}>
           <img
             src={image}
             alt={title}
@@ -71,19 +71,27 @@ const ProductItem = (props: ProductItemProps) => {
             aria-label="Button to add to Cart"
             role="button"
             tabindex="1"
+            title="Add to Cart"
           >
-            <FaCartPlus className={classes.product__icon} />
+            <FaCartPlus className={classes.product__icon} title="Add to Cart" />
           </Button>
           <Button
             onClick={addToWishlistHandler}
             aria-label="Button to add to Wishlist"
             role="button"
             tabindex="2"
+            title="Add to Wishlist"
           >
             {isFavourite ? (
-              <FaHeart className={classes.product__icon} />
+              <FaHeart
+                className={classes.product__icon}
+                title="Remove from Wishlist"
+              />
             ) : (
-              <FaRegHeart className={classes.product__icon} />
+              <FaRegHeart
+                className={classes.product__icon}
+                title="Add to Wishlist"
+              />
             )}
           </Button>
         </div>

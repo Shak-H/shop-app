@@ -1,10 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
 interface WishlistState {
-  items: any[];
+  items: {
+    id: string;
+    price: number;
+    name: string;
+    image: string;
+  }[];
   quantity: number;
   changed: boolean;
+  isFavourite: boolean;
 }
 
 // Define the initial state using that type
@@ -12,10 +18,11 @@ const initialState: WishlistState = {
   items: [],
   quantity: 0,
   changed: false,
+  isFavourite: false,
 };
 
 const wishlistSlice = createSlice({
-  name: "wishlist",
+  name: 'wishlist',
   initialState,
   reducers: {
     replaceWishlist(state, action) {
@@ -28,6 +35,7 @@ const wishlistSlice = createSlice({
       if (!existingItem) {
         state.quantity++;
         state.changed = true;
+        state.isFavourite = true;
         state.items.push({
           id: newItem.id,
           price: newItem.price,
@@ -39,10 +47,10 @@ const wishlistSlice = createSlice({
     removeItemFromWishlist(state, action: PayloadAction<any>) {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
-      state.quantity--;
       state.changed = true;
+      state.isFavourite = false;
       if (existingItem) {
-        existingItem.quantity--;
+        state.quantity--;
         state.items = state.items.filter((item) => item.id !== id);
       }
     },

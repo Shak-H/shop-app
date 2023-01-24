@@ -31,12 +31,25 @@
   font-weight: 700;
 }
 
-.product__image {
-  height: 150px;
-  width: fit-content;
-  margin-bottom: 2%;
+.product__image-container {
+  height: 250px;
+  width: 250px;
+  color: #3a3a3a;
+  background-color: white;
   border-radius: 30px;
   border: solid 5px #da291c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__image {
+  height: auto;
+  width: fit-content;
+  max-height: 200px;
+  max-width: 200px;
+  margin-bottom: 2%;
   padding: 1%;
   background-color: white;
 }

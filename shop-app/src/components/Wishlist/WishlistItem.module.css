@@ -21,12 +21,25 @@
   color: #f48179;
 }
 
-.wishlist-item__image {
-  height: 150px;
-  width: fit-content;
-  margin: 2%;
-  border: solid 5px #da291c;
+.wishlist-item__image-container {
+  height: 250px;
+  width: 250px;
+  color: #3a3a3a;
+  background-color: white;
   border-radius: 30px;
+  border: solid 5px #da291c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wishlist-item__image {
+  height: auto;
+  width: fit-content;
+  max-height: 200px;
+  max-width: 200px;
+  margin: 2%;
 }
 
 .wishlist-item__price {

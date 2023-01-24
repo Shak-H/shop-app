@@ -1,4 +1,4 @@
-import classes from "./Button.module.css";
+import classes from './Button.module.css';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -6,6 +6,7 @@ interface ButtonProps {
   onClick?: () => void;
   role: string;
   tabindex: string;
+  title: string;
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   role,
   tabindex,
   className,
+  title,
 }: ButtonProps) => {
   return (
     <section className={classes.button} onClick={onClick}>

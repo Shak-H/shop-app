@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import CartItem from "./CartItem";
+import CartItem from './CartItem';
 
-import Button from "../UI/Button";
-import Modal from "../UI/Modal";
+import Button from '../UI/Button';
+import Modal from '../UI/Modal';
 
-import classes from "./Cart.module.css";
-import { uiActions } from "../../store/ui-slice";
-import { cartActions } from "../../store/cart-slice";
-import { RootState } from "../../store";
+import classes from './Cart.module.css';
+import { uiActions } from '../../store/ui-slice';
+import { cartActions } from '../../store/cart-slice';
+import { RootState } from '../../store';
 
-import { AiOutlineCloseSquare } from "react-icons/ai";
-import { ImBin, ImCreditCard } from "react-icons/im";
+import { AiOutlineCloseSquare } from 'react-icons/ai';
+import { ImBin, ImCreditCard } from 'react-icons/im';
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -48,17 +48,34 @@ const Cart = () => {
         <span className={classes.cart__close} onClick={hideCart}>
           <AiOutlineCloseSquare />
         </span>
-        <Button aria-label="Button to checkout" role="button" tabindex="1">
-          Checkout <ImCreditCard className={classes.cart__icon} />
-        </Button>
-        <Button
-          onClick={clearCart}
-          aria-label="Button to empty Cart"
-          role="button"
-          tabindex="2"
-        >
-          Empty <ImBin className={classes.cart__icon} />
-        </Button>
+        {cartItems.length > 0 ? (
+          <>
+            <Button
+              aria-label="Button to checkout"
+              role="button"
+              tabindex="1"
+              title="Go to Checkout"
+            >
+              Checkout{' '}
+              <ImCreditCard
+                className={classes.cart__icon}
+                title="Go to Checkout"
+              />
+            </Button>
+            <Button
+              onClick={clearCart}
+              aria-label="Button to empty Cart"
+              role="button"
+              tabindex="2"
+              title="Clear the Cart"
+            >
+              Empty{' '}
+              <ImBin className={classes.cart__icon} title="Clear the Cart" />
+            </Button>{' '}
+          </>
+        ) : (
+          <p className={classes.cart__message}>Cart is empty</p>
+        )}
       </div>
     </Modal>
   );
