@@ -38,9 +38,6 @@ const ProductItem = (props: ProductItemProps) => {
       dispatch(
         wishlistActions.addItemToWishlist({
           id,
-          // title,
-          // price,
-          // image,
         })
       );
       dispatch(productsActions.toggleFavourite(id));

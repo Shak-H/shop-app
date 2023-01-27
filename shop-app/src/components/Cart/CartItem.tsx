@@ -22,7 +22,6 @@ const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useDispatch();
 
   const { title, quantity, total, price, id, image } = item;
-  console.log(item);
 
   const removeItemHandler = () => {
     dispatch(cartActions.removeItemFromCart(id));

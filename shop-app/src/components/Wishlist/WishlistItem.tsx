@@ -23,7 +23,6 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
   const dispatch = useDispatch();
 
   const { title, price, id, image } = item;
-  // const { id } = item;
 
   const removeItemHandler = () => {
     dispatch(productsActions.toggleFavourite(id));

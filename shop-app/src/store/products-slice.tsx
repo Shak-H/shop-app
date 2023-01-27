@@ -26,7 +26,6 @@ const productsSlice = createSlice({
         return { ...item, isFavourite: false };
       });
       state.items = itemsWithIsFavourite;
-      console.log(itemsWithIsFavourite);
     },
     toggleFavourite(state, action) {
       const existingItem = state.items.find(

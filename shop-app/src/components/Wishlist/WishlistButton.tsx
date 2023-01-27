@@ -12,11 +12,6 @@ const WishlistButton = () => {
   const wishlistQuantity = useSelector(
     (state: RootState) => state.wishlist.quantity
   );
-  const wishlist = useSelector((state: RootState) => state.wishlist);
-  console.log(wishlist);
-  // const products = useSelector((state: RootState) => state.products.items);
-
-  // const wishlistItems = products.filter((item) => item.isFavourite);
 
   const toggleWishlistHandler = () => {
     dispatch(uiActions.toggleWishlist());

@@ -11,9 +11,6 @@ import { RootState } from '../../store';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 const Wishlist = () => {
-  // const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
-  // console.log(wishlistItems);
-
   const products = useSelector((state: RootState) => state.products.items);
 
   const wishlistItems = products.filter((item) => item.isFavourite);

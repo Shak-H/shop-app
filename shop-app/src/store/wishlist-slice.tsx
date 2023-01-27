@@ -4,9 +4,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface WishlistState {
   items: {
     id: string;
-    // price: number;
-    // name: string;
-    // image: string;
   }[];
   quantity: number;
   changed: boolean;
@@ -36,9 +33,6 @@ const wishlistSlice = createSlice({
 
         state.items.push({
           id: newItem.id,
-          // price: newItem.price,
-          // name: newItem.title,
-          // image: newItem.image,
         });
       }
     },
