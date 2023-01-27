@@ -1,39 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-import ProductItem from "./ProductItem";
+import ProductItem from './ProductItem';
 
-import classes from "./Products.module.css";
-
-interface ProductsArray {
-  key: number | string;
-  id: number | string;
-  title: string;
-  price: string;
-  image: string;
-}
+import classes from './Products.module.css';
 
 const Products = () => {
-  const [products, setProducts] = useState<ProductsArray[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-
-      if (!response.ok) {
-        throw new Error("Error fetching Products");
-      }
-
-      const data = await response.json();
-      console.log("data", data);
-
-      setProducts(data);
-    };
-    try {
-      fetchProducts();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const products = useSelector((state: RootState) => state.products.items);
 
   return (
     <section className={classes.products}>
@@ -46,6 +19,7 @@ const Products = () => {
             title={product.title}
             price={+product.price}
             image={product.image}
+            isFavourite={product.isFavourite}
           />
         ))}
       </ul>

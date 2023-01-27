@@ -5,14 +5,16 @@ import Button from '../UI/Button';
 import classes from './WishlistItem.module.css';
 import { wishlistActions } from '../../store/wishlist-slice';
 import { cartActions } from '../../store/cart-slice';
+import { productsActions } from '../../store/products-slice';
 
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaCartPlus } from 'react-icons/fa';
+import { ImBin } from 'react-icons/im';
 
 type WishlistItemProps = {
   item: {
+    id: string;
     title: string;
     price: number;
-    id: string;
     image: string;
   };
 };
@@ -21,8 +23,10 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
   const dispatch = useDispatch();
 
   const { title, price, id, image } = item;
+  // const { id } = item;
 
   const removeItemHandler = () => {
+    dispatch(productsActions.toggleFavourite(id));
     dispatch(wishlistActions.removeItemFromWishlist(id));
   };
 
@@ -64,7 +68,7 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
             tabindex="0"
             title="Remove from Wishlist"
           >
-            <FaMinus
+            <ImBin
               className={classes['wishlist-item__icon']}
               title="Remove from Wishlist"
             />
@@ -77,7 +81,7 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
             tabindex="0"
             title="Add to Cart"
           >
-            <FaPlus
+            <FaCartPlus
               className={classes['wishlist-item__icon']}
               title="Add to Cart"
             />

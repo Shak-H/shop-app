@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { cartActions } from '../../store/cart-slice';
@@ -8,20 +7,20 @@ import Button from '../UI/Button';
 import classes from './ProductItem.module.css';
 
 import { FaRegHeart, FaHeart, FaCartPlus } from 'react-icons/fa';
+import { productsActions } from '../../store/products-slice';
 
 type ProductItemProps = {
+  id: string;
   title: string;
   price: number;
-  id: number | string;
   image: string;
+  isFavourite: boolean;
 };
 
 const ProductItem = (props: ProductItemProps) => {
   const dispatch = useDispatch();
 
-  const [isFavourite, setIsFavourite] = useState(false);
-
-  const { title, price, image, id } = props;
+  const { title, price, image, id, isFavourite } = props;
 
   const addToCartHandler = () => {
     dispatch(
@@ -39,15 +38,15 @@ const ProductItem = (props: ProductItemProps) => {
       dispatch(
         wishlistActions.addItemToWishlist({
           id,
-          title,
-          price,
-          image,
+          // title,
+          // price,
+          // image,
         })
       );
-      setIsFavourite(true);
+      dispatch(productsActions.toggleFavourite(id));
     } else {
       dispatch(wishlistActions.removeItemFromWishlist(id));
-      setIsFavourite(false);
+      dispatch(productsActions.toggleFavourite(id));
     }
   };
 

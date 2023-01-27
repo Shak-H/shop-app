@@ -9,11 +9,11 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 
 interface CartItemProps {
   item: {
+    id: string;
     title: string;
     quantity: number;
     total: number;
     price: number;
-    id: any;
     image: string;
   };
 }
@@ -22,6 +22,7 @@ const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useDispatch();
 
   const { title, quantity, total, price, id, image } = item;
+  console.log(item);
 
   const removeItemHandler = () => {
     dispatch(cartActions.removeItemFromCart(id));

@@ -4,9 +4,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface WishlistState {
   items: {
     id: string;
-    price: number;
-    name: string;
-    image: string;
+    // price: number;
+    // name: string;
+    // image: string;
   }[];
   quantity: number;
   changed: boolean;
@@ -36,9 +36,9 @@ const wishlistSlice = createSlice({
 
         state.items.push({
           id: newItem.id,
-          price: newItem.price,
-          name: newItem.title,
-          image: newItem.image,
+          // price: newItem.price,
+          // name: newItem.title,
+          // image: newItem.image,
         });
       }
     },
@@ -46,7 +46,6 @@ const wishlistSlice = createSlice({
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       state.changed = true;
-
       if (existingItem) {
         state.quantity--;
         state.items = state.items.filter((item) => item.id !== id);

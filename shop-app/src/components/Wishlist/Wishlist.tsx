@@ -11,7 +11,12 @@ import { RootState } from '../../store';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 const Wishlist = () => {
-  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+  // const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+  // console.log(wishlistItems);
+
+  const products = useSelector((state: RootState) => state.products.items);
+
+  const wishlistItems = products.filter((item) => item.isFavourite);
 
   const dispatch = useDispatch();
 
@@ -29,7 +34,7 @@ const Wishlist = () => {
               key={item.id}
               item={{
                 id: item.id,
-                title: item.name,
+                title: item.title,
                 price: item.price,
                 image: item.image,
               }}

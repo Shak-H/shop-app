@@ -1,17 +1,17 @@
-import { AppDispatch } from ".";
+import { AppDispatch } from '.';
 
-import { uiActions } from "./ui-slice";
-import { cartActions } from "./cart-slice";
+import { uiActions } from './ui-slice';
+import { cartActions } from './cart-slice';
 
 export const fetchCartData = () => {
   return async (dispatch: AppDispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
+        'https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/cart.json'
       );
 
       if (!response.ok) {
-        throw new Error("Could not fetch Cart");
+        throw new Error('Could not fetch Cart');
       }
 
       const data = await response.json();
@@ -29,9 +29,9 @@ export const fetchCartData = () => {
     } catch (error) {
       dispatch(
         uiActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: "Error when fetching Cart!",
+          status: 'error',
+          title: 'Error!',
+          message: 'Error when fetching Cart!',
         })
       );
     }
@@ -42,17 +42,17 @@ export const sendCartData = (cart: any) => {
   return async (dispatch: AppDispatch) => {
     dispatch(
       uiActions.showNotification({
-        status: "pending",
-        title: "Sending...",
-        message: "Sending cart data",
+        status: 'pending',
+        title: 'Sending...',
+        message: 'Sending cart data',
       })
     );
 
     const sendRequest = async () => {
       const response = await fetch(
-        "https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
+        'https://react-http-8636f-default-rtdb.europe-west1.firebasedatabase.app/cart.json',
         {
-          method: "PUT",
+          method: 'PUT',
           body: JSON.stringify({
             items: cart.items,
             totalQuantity: cart.totalQuantity,
@@ -61,7 +61,7 @@ export const sendCartData = (cart: any) => {
       );
 
       if (!response.ok) {
-        throw new Error("Error when updating Cart");
+        throw new Error('Error when updating Cart');
       }
     };
 
@@ -73,9 +73,9 @@ export const sendCartData = (cart: any) => {
 
       dispatch(
         uiActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Cart Updated!",
+          status: 'success',
+          title: 'Success!',
+          message: 'Cart Updated!',
         })
       );
 
@@ -86,9 +86,9 @@ export const sendCartData = (cart: any) => {
     } catch (error) {
       dispatch(
         uiActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: "Error when updating Cart!",
+          status: 'error',
+          title: 'Error!',
+          message: 'Error when updating Cart!',
         })
       );
     }

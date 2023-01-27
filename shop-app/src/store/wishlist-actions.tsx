@@ -38,7 +38,15 @@ export const fetchWishlistData = () => {
   };
 };
 
-export const sendWishlistData = (wishlist: any) => {
+export const sendWishlistData = (wishlist: {
+  items: {
+    id: string;
+    // price: number;
+    // name: string;
+    // image: string;
+  }[];
+  quantity: number;
+}) => {
   return async (dispatch: AppDispatch) => {
     dispatch(
       uiActions.showNotification({
