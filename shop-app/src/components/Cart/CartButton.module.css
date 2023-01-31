@@ -8,6 +8,7 @@
 }
 
 .cart-btn:hover,
+.cart-btn:focus,
 .cart-btn:active {
   color: white;
 }
@@ -16,7 +17,6 @@
   margin: 0 0.5rem;
   text-transform: uppercase;
   line-height: 1.5;
-  color: white;
 }
 
 .cart-btn__icon {

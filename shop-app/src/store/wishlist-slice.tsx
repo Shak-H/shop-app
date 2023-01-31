@@ -24,7 +24,12 @@ const wishlistSlice = createSlice({
       state.quantity = action.payload.quantity;
       state.items = action.payload.items;
     },
-    addItemToWishlist(state, action: PayloadAction<any>) {
+    addItemToWishlist(
+      state,
+      action: PayloadAction<{
+        id: string;
+      }>
+    ) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {

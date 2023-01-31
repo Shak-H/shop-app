@@ -29,24 +29,26 @@ const Burger = () => {
 
   return (
     <>
-      <div
-        className={classes.header__burger}
-        data-open={open}
-        onClick={openBurgerHandler}
-      >
+      {
         <div
-          className={classes['header__burger--single']}
-          style={hamburgerTransform1}
-        />
-        <div
-          className={classes['header__burger--single']}
-          style={hamburgerTransform2}
-        />
-        <div
-          className={classes['header__burger--single']}
-          style={hamburgerTransform3}
-        />
-      </div>
+          className={classes.header__burger}
+          data-open={open}
+          onClick={openBurgerHandler}
+        >
+          <div
+            className={classes['header__burger--single']}
+            style={hamburgerTransform1}
+          />
+          <div
+            className={classes['header__burger--single']}
+            style={hamburgerTransform2}
+          />
+          <div
+            className={classes['header__burger--single']}
+            style={hamburgerTransform3}
+          />
+        </div>
+      }
       <RightNav
         open={open}
         role="button"

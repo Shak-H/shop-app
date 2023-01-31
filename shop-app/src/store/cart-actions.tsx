@@ -38,7 +38,18 @@ export const fetchCartData = () => {
   };
 };
 
-export const sendCartData = (cart: any) => {
+export const sendCartData = (cart: {
+  items: {
+    id: string;
+    price: number;
+    name: string;
+    image: string;
+    quantity: number;
+    totalPrice: number;
+  }[];
+  totalQuantity: number;
+  changed: boolean;
+}) => {
   return async (dispatch: AppDispatch) => {
     dispatch(
       uiActions.showNotification({

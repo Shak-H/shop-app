@@ -22,9 +22,19 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     replaceProducts(state, action) {
-      const itemsWithIsFavourite = action.payload.items.map((item: any) => {
-        return { ...item, isFavourite: false };
-      });
+      const itemsWithIsFavourite = action.payload.items.map(
+        (item: {
+          id: string;
+          title: string;
+          price: number;
+          description: string;
+          category: string;
+          image: string;
+          isFavourite: boolean;
+        }) => {
+          return { ...item, isFavourite: false };
+        }
+      );
       state.items = itemsWithIsFavourite;
     },
     toggleFavourite(state, action) {

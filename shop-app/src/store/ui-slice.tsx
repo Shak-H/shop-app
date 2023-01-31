@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface UiState {
   cartIsVisible: boolean;
   wishlistIsVisible: boolean;
-  notification: any;
+  notification: { status: string; title: string; message: string } | null;
 }
 
 // Define the initial state using that type
@@ -24,7 +24,10 @@ const uiSlice = createSlice({
     toggleWishlist(state) {
       state.wishlistIsVisible = !state.wishlistIsVisible;
     },
-    showNotification(state: any, action: PayloadAction<any>) {
+    showNotification(
+      state,
+      action: PayloadAction<{ status: string; title: string; message: string }>
+    ) {
       state.notification = {
         status: action.payload.status,
         title: action.payload.title,
