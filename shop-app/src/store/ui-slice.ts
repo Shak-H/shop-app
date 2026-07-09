@@ -1,11 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define a type for the slice state
-interface UiState {
-  cartIsVisible: boolean;
-  wishlistIsVisible: boolean;
-  notification: { status: string; title: string; message: string } | null;
-}
+import type { UiState, Notification } from "../types/ui";
 
 // Define the initial state using that type
 const initialState: UiState = {
@@ -15,7 +10,7 @@ const initialState: UiState = {
 };
 
 const uiSlice = createSlice({
-  name: 'ui',
+  name: "ui",
   initialState,
   reducers: {
     toggleCart(state) {
@@ -24,15 +19,8 @@ const uiSlice = createSlice({
     toggleWishlist(state) {
       state.wishlistIsVisible = !state.wishlistIsVisible;
     },
-    showNotification(
-      state,
-      action: PayloadAction<{ status: string; title: string; message: string }>
-    ) {
-      state.notification = {
-        status: action.payload.status,
-        title: action.payload.title,
-        message: action.payload.message,
-      };
+    showNotification(state, action: PayloadAction<Notification>) {
+      state.notification = action.payload;
     },
     removeNotification(state) {
       state.notification = null;

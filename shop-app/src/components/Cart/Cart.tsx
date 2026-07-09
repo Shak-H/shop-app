@@ -1,22 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
-import CartItem from './CartItem';
+import CartItem from "./CartItem";
 
-import Button from '../UI/Button';
-import Modal from '../UI/Modal';
+import Button from "../UI/Button";
+import Modal from "../UI/Modal";
 
-import classes from './Cart.module.css';
-import { uiActions } from '../../store/ui-slice';
-import { cartActions } from '../../store/cart-slice';
-import { RootState } from '../../store';
+import classes from "./Cart.module.css";
+import { uiActions } from "../../store/ui-slice";
+import { cartActions } from "../../store/cart-slice";
 
-import { AiOutlineCloseSquare } from 'react-icons/ai';
-import { ImBin, ImCreditCard } from 'react-icons/im';
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { ImBin, ImCreditCard } from "react-icons/im";
 
 const Cart = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.items);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const hideCart = () => {
     dispatch(uiActions.closeCart());
@@ -32,17 +31,7 @@ const Cart = () => {
         <h2 className={classes.cart__heading}>Your Shopping Cart</h2>
         <ul className={classes.cart__list}>
           {cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              item={{
-                id: item.id,
-                title: item.name,
-                quantity: item.quantity,
-                total: item.totalPrice,
-                price: item.price,
-                image: item.image,
-              }}
-            />
+            <CartItem key={item.id} {...item} />
           ))}
         </ul>
         <span className={classes.cart__close} onClick={hideCart}>
@@ -52,11 +41,10 @@ const Cart = () => {
           <>
             <Button
               aria-label="Button to checkout"
-              role="button"
-              tabindex="1"
+              tabIndex={1}
               title="Go to Checkout"
             >
-              Checkout{' '}
+              Checkout{" "}
               <ImCreditCard
                 className={classes.cart__icon}
                 title="Go to Checkout"
@@ -65,13 +53,12 @@ const Cart = () => {
             <Button
               onClick={clearCart}
               aria-label="Button to empty Cart"
-              role="button"
-              tabindex="2"
+              tabIndex={2}
               title="Clear the Cart"
             >
-              Empty{' '}
+              Empty{" "}
               <ImBin className={classes.cart__icon} title="Clear the Cart" />
-            </Button>{' '}
+            </Button>{" "}
           </>
         ) : (
           <p className={classes.cart__message}>Cart is empty</p>

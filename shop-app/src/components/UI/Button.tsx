@@ -1,26 +1,16 @@
-import classes from './Button.module.css';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-  role: string;
-  tabindex: string;
-  title: string;
+import classes from "./Button.module.css";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
 }
 
-const Button = ({
-  children,
-  onClick,
-  role,
-  tabindex,
-  className,
-  title,
-}: ButtonProps) => {
+const Button = ({ children, className, ...props }: ButtonProps) => {
   return (
-    <section className={classes.button} onClick={onClick}>
+    <button className={`${classes.button} ${className ?? ""}`} {...props}>
       {children}
-    </section>
+    </button>
   );
 };
 

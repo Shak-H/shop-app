@@ -11,10 +11,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
+  font: inherit;
 }
 
 .button:hover,
-.button:focus {
+.button:focus-visible {
   background-color: #da291c;
   border-color: white;
   color: white;

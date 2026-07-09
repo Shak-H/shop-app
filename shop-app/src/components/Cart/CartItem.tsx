@@ -1,27 +1,25 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from "../../store/hooks";
 
-import Button from '../UI/Button';
+import type { CartItem as CartItemModel } from "../../types/cart";
 
-import classes from './CartItem.module.css';
-import { cartActions } from '../../store/cart-slice';
+import Button from "../UI/Button";
 
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import classes from "./CartItem.module.css";
+import { cartActions } from "../../store/cart-slice";
 
-interface CartItemProps {
-  item: {
-    id: string;
-    title: string;
-    quantity: number;
-    total: number;
-    price: number;
-    image: string;
-  };
-}
+import { FaPlus, FaMinus } from "react-icons/fa";
 
-const CartItem = ({ item }: CartItemProps) => {
-  const dispatch = useDispatch();
+type CartItemProps = CartItemModel;
 
-  const { title, quantity, total, price, id, image } = item;
+const CartItem = ({
+  id,
+  title,
+  quantity,
+  totalPrice,
+  price,
+  image,
+}: CartItemProps) => {
+  const dispatch = useAppDispatch();
 
   const removeItemHandler = () => {
     dispatch(cartActions.removeItemFromCart(id));
@@ -34,59 +32,57 @@ const CartItem = ({ item }: CartItemProps) => {
         title,
         price,
         image,
-      })
+      }),
     );
   };
 
   return (
-    <li className={classes['cart-item']}>
-      <header className={classes['cart-item__header']}>
-        <h3 className={classes['cart-item__title']}>{title}</h3>
-        <div className={classes['cart-item__quantity']}>
+    <li className={classes["cart-item"]}>
+      <header className={classes["cart-item__header"]}>
+        <h3 className={classes["cart-item__title"]}>{title}</h3>
+        <div className={classes["cart-item__quantity"]}>
           x <span>{quantity}</span>
         </div>
       </header>
-      <figure className={classes['cart-item__image-container']}>
+      <figure className={classes["cart-item__image-container"]}>
         <img
           src={image}
           alt={title}
-          className={classes['cart-item__image']}
+          className={classes["cart-item__image"]}
           aria-labelledby="cart-item__image--caption"
         />
         <figcaption id="cart-item__image--caption">Product Image</figcaption>
       </figure>
-      <div className={classes['cart-item__totalPrice']}>
-        £{total.toFixed(2)}{' '}
-        <span className={classes['cart-item__price']}>
+      <div className={classes["cart-item__totalPrice"]}>
+        £{totalPrice.toFixed(2)}{" "}
+        <span className={classes["cart-item__price"]}>
           (${price.toFixed(2)}/item)
         </span>
       </div>
 
-      <div className={classes['cart-item__details']}>
-        <div className={classes['cart-item__buttons']}>
+      <div className={classes["cart-item__details"]}>
+        <div className={classes["cart-item__buttons"]}>
           <Button
-            className={classes['cart-item__button']}
+            className={classes["cart-item__button"]}
             onClick={removeItemHandler}
             aria-label="Button to remove from Cart"
-            role="button"
-            tabindex="1"
+            tabIndex={1}
             title="Remove from Cart"
           >
             <FaMinus
-              className={classes['cart-item__icon']}
+              className={classes["cart-item__icon"]}
               title="Remove from Cart"
             />
           </Button>
           <Button
-            className={classes['cart-item__button']}
+            className={classes["cart-item__button"]}
             onClick={addItemHandler}
             aria-label="Button to add another to Cart"
-            role="button"
-            tabindex="2"
+            tabIndex={2}
             title="Add another to Cart"
           >
             <FaPlus
-              className={classes['cart-item__icon']}
+              className={classes["cart-item__icon"]}
               title="Add another to Cart"
             />
           </Button>

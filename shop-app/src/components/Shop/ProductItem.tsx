@@ -1,26 +1,26 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from "../../store/hooks";
 
-import { cartActions } from '../../store/cart-slice';
-import { wishlistActions } from '../../store/wishlist-slice';
-import Card from '../UI/Card';
-import Button from '../UI/Button';
-import classes from './ProductItem.module.css';
+import type { Product } from "../../types/product";
 
-import { FaRegHeart, FaHeart, FaCartPlus } from 'react-icons/fa';
-import { productsActions } from '../../store/products-slice';
+import { cartActions } from "../../store/cart-slice";
+import { wishlistActions } from "../../store/wishlist-slice";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
+import classes from "./ProductItem.module.css";
 
-type ProductItemProps = {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
-  isFavourite: boolean;
-};
+import { FaRegHeart, FaHeart, FaCartPlus } from "react-icons/fa";
+import { productsActions } from "../../store/products-slice";
 
-const ProductItem = (props: ProductItemProps) => {
-  const dispatch = useDispatch();
+type ProductItemProps = Product;
 
-  const { title, price, image, id, isFavourite } = props;
+const ProductItem = ({
+  id,
+  title,
+  price,
+  image,
+  isFavourite,
+}: ProductItemProps) => {
+  const dispatch = useAppDispatch();
 
   const addToCartHandler = () => {
     dispatch(
@@ -29,7 +29,7 @@ const ProductItem = (props: ProductItemProps) => {
         title,
         price,
         image,
-      })
+      }),
     );
   };
 
@@ -38,7 +38,7 @@ const ProductItem = (props: ProductItemProps) => {
       dispatch(
         wishlistActions.addItemToWishlist({
           id,
-        })
+        }),
       );
       dispatch(productsActions.toggleFavourite(id));
     } else {
@@ -51,7 +51,7 @@ const ProductItem = (props: ProductItemProps) => {
     <Card className={classes.product}>
       <li className={classes.product__item}>
         <h3 className={classes.product__title}>{title}</h3>
-        <figure className={classes['product__image-container']}>
+        <figure className={classes["product__image-container"]}>
           <img
             src={image}
             alt={title}
@@ -65,8 +65,7 @@ const ProductItem = (props: ProductItemProps) => {
           <Button
             onClick={addToCartHandler}
             aria-label="Button to add to Cart"
-            role="button"
-            tabindex="1"
+            tabIndex={1}
             title="Add to Cart"
           >
             <FaCartPlus className={classes.product__icon} title="Add to Cart" />
@@ -74,8 +73,7 @@ const ProductItem = (props: ProductItemProps) => {
           <Button
             onClick={addToWishlistHandler}
             aria-label="Button to add to Wishlist"
-            role="button"
-            tabindex="2"
+            tabIndex={2}
             title="Add to Wishlist"
           >
             {isFavourite ? (

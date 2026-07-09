@@ -1,65 +1,68 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { TypedUseSelectorHook } from 'react-redux';
+import { useEffect, useState } from "react";
 
-import Cart from './components/Cart/Cart';
-import Layout from './components/Layout/Layout';
-import Products from './components/Shop/Products';
-import Notification from './components/UI/Notification';
-import Wishlist from './components/Wishlist/Wishlist';
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import type { ReplaceCartPayload } from "./types/cart";
+import type { ReplaceWishlistPayload } from "./types/wishlist";
+import { cartActions } from "./store/cart-slice";
+import { wishlistActions } from "./store/wishlist-slice";
 
-import { RootState } from './store';
-import type { AppDispatch } from './store';
-import { fetchProductsData } from './store/products-actions';
-import { sendCartData, fetchCartData } from './store/cart-actions';
-import { sendWishlistData, fetchWishlistData } from './store/wishlist-actions';
+import Cart from "./components/Cart/Cart";
+import Layout from "./components/Layout/Layout";
+import Products from "./components/Shop/Products";
+import Notification from "./components/UI/Notification";
+import Wishlist from "./components/Wishlist/Wishlist";
 
-let isInitialCart = true;
-let isInitialWishlist = true;
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { fetchProductsData } from "./store/products-actions";
 
 function App() {
-  const dispatch = useDispatch();
-  const showCart = useSelector((state: RootState) => state.ui.cartIsVisible);
-  const showWishlist = useSelector(
-    (state: RootState) => state.ui.wishlistIsVisible
-  );
-  const cart = useSelector((state: RootState) => state.cart);
-  const wishlist = useSelector((state: RootState) => state.wishlist);
-  const notification = useSelector((state: RootState) => state.ui.notification);
+  const dispatch = useAppDispatch();
+
+  const showCart = useAppSelector((state) => state.ui.cartIsVisible);
+  const showWishlist = useAppSelector((state) => state.ui.wishlistIsVisible);
+  const notification = useAppSelector((state) => state.ui.notification);
+
+  const cartStorage = useLocalStorage<ReplaceCartPayload>("cart");
+  const wishlistStorage = useLocalStorage<ReplaceWishlistPayload>("wishlist");
+  const cart = useAppSelector((state) => state.cart);
+  const wishlist = useAppSelector((state) => state.wishlist);
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    dispatch<any>(fetchProductsData());
+    dispatch(fetchProductsData());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch<any>(fetchCartData());
-  }, [dispatch]);
+    const storedCart = cartStorage.load();
+    const storedWishlist = wishlistStorage.load();
+
+    if (storedCart) {
+      dispatch(cartActions.replaceCart(storedCart));
+    }
+
+    if (storedWishlist) {
+      dispatch(wishlistActions.replaceWishlist(storedWishlist));
+    }
+  }, [cartStorage, wishlistStorage, dispatch]);
 
   useEffect(() => {
-    dispatch<any>(fetchWishlistData());
-  }, [dispatch]);
+    if (!cart.changed) return;
+
+    cartStorage.save({
+      items: cart.items,
+      totalQuantity: cart.totalQuantity,
+    });
+  }, [cart, cartStorage]);
 
   useEffect(() => {
-    if (isInitialCart) {
-      isInitialCart = false;
-      return;
-    }
+    if (!wishlist.changed) return;
 
-    if (cart.changed) {
-      dispatch<any>(sendCartData(cart));
-    }
-  }, [cart, dispatch]);
-
-  useEffect(() => {
-    if (isInitialWishlist) {
-      isInitialWishlist = false;
-      return;
-    }
-
-    if (wishlist.changed) {
-      dispatch<any>(sendWishlistData(wishlist));
-    }
-  }, [wishlist, dispatch]);
+    wishlistStorage.save({
+      items: wishlist.items,
+      quantity: wishlist.quantity,
+    });
+  }, [wishlist, wishlistStorage]);
 
   return (
     <>
@@ -70,16 +73,14 @@ function App() {
           message={notification.message}
         />
       )}
-      <Layout>
+
+      <Layout searchTerm={searchTerm} onSearchChange={setSearchTerm}>
         {showCart && <Cart />}
         {showWishlist && <Wishlist />}
-        <Products />
+        <Products searchTerm={searchTerm} />
       </Layout>
     </>
   );
 }
-
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export default App;

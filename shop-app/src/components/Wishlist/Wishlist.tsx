@@ -1,21 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
-import WishlistItem from './WishlistItem';
+import WishlistItem from "./WishlistItem";
 
-import Modal from '../UI/Modal';
+import Modal from "../UI/Modal";
 
-import classes from './Wishlist.module.css';
-import { uiActions } from '../../store/ui-slice';
-import { RootState } from '../../store';
+import classes from "./Wishlist.module.css";
+import { uiActions } from "../../store/ui-slice";
 
-import { AiOutlineCloseSquare } from 'react-icons/ai';
+import { AiOutlineCloseSquare } from "react-icons/ai";
 
 const Wishlist = () => {
-  const products = useSelector((state: RootState) => state.products.items);
+  const products = useAppSelector((state) => state.products.items);
 
   const wishlistItems = products.filter((item) => item.isFavourite);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const hideWishlist = () => {
     dispatch(uiActions.closeWishlist());
@@ -27,15 +26,7 @@ const Wishlist = () => {
         <h2 className={classes.wishlist__heading}>Your Wishlist</h2>
         <ul className={classes.wishlist__list}>
           {wishlistItems.map((item) => (
-            <WishlistItem
-              key={item.id}
-              item={{
-                id: item.id,
-                title: item.title,
-                price: item.price,
-                image: item.image,
-              }}
-            />
+            <WishlistItem key={item.id} {...item} />
           ))}
         </ul>
         <span
@@ -49,7 +40,7 @@ const Wishlist = () => {
         {wishlistItems.length <= 0 ? (
           <p className={classes.wishlist__message}>Wishlist is empty</p>
         ) : (
-          ''
+          ""
         )}
       </div>
     </Modal>

@@ -1,10 +1,7 @@
 import classes from "./Notification.module.css";
+import type { Notification as NotificationModel } from "../../types/ui";
 
-type NotificationProps = {
-  status: string;
-  title: string;
-  message: string;
-};
+type NotificationProps = NotificationModel;
 
 const Notification = (props: NotificationProps) => {
   let specialClasses = "";

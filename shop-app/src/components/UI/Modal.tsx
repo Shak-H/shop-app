@@ -1,44 +1,56 @@
+import { PropsWithChildren, useRef } from "react";
 import ReactDOM from "react-dom";
 
+import { useClickOutside } from "../../hooks/useClickOutside";
 import classes from "./Modal.module.css";
 
 type BackdropProps = {
-  className?: string;
   hideModal: () => void;
 };
 
 const Backdrop = ({ hideModal }: BackdropProps) => {
-  return <div className={classes.backdrop} onClick={hideModal}></div>;
+  return <div className={classes.backdrop} onClick={hideModal} />;
 };
 
-type ModalOverlayProps = {
-  children: React.ReactNode;
+type ModalOverlayProps = PropsWithChildren<{
   className?: string;
-};
+  hideModal: () => void;
+}>;
 
-const ModalOverlay = ({ children }: ModalOverlayProps) => {
+const ModalOverlay = ({
+  children,
+  className = "",
+  hideModal,
+}: ModalOverlayProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(modalRef, hideModal);
+
   return (
-    <div className={classes.modal}>
+    <div ref={modalRef} className={`${classes.modal} ${className}`}>
       <div className={classes.content}>{children}</div>
     </div>
   );
 };
 
-const portalElement: any = document.getElementById("overlays");
+const portalElement = document.getElementById("overlays");
 
-type ModalProps = {
-  children: React.ReactNode;
+type ModalProps = PropsWithChildren<{
   className?: string;
   hideModal: () => void;
-};
+}>;
 
-const Modal = ({ children, hideModal }: ModalProps) => {
+const Modal = ({ children, className = "", hideModal }: ModalProps) => {
+  if (!portalElement) return null;
+
   return (
     <>
       {ReactDOM.createPortal(<Backdrop hideModal={hideModal} />, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
-        portalElement
+        <ModalOverlay className={className} hideModal={hideModal}>
+          {children}
+        </ModalOverlay>,
+        portalElement,
       )}
     </>
   );
