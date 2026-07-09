@@ -18,7 +18,7 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
       <FiSearch className={classes.icon} aria-hidden="true" focusable="false" />
 
       <input
-        type="search"
+        type="text"
         value={value}
         placeholder="Search products..."
         onChange={handleChange}

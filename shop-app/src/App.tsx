@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import type { ReplaceCartPayload } from "./types/cart";
 import type { ReplaceWishlistPayload } from "./types/wishlist";
+
 import { cartActions } from "./store/cart-slice";
 import { wishlistActions } from "./store/wishlist-slice";
+import { fetchProductsData } from "./store/products-actions";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
 
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
 import Wishlist from "./components/Wishlist/Wishlist";
-
-import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { fetchProductsData } from "./store/products-actions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,10 +22,14 @@ function App() {
   const showWishlist = useAppSelector((state) => state.ui.wishlistIsVisible);
   const notification = useAppSelector((state) => state.ui.notification);
 
-  const cartStorage = useLocalStorage<ReplaceCartPayload>("cart");
-  const wishlistStorage = useLocalStorage<ReplaceWishlistPayload>("wishlist");
   const cart = useAppSelector((state) => state.cart);
   const wishlist = useAppSelector((state) => state.wishlist);
+
+  const { load: loadCart, save: saveCart } =
+    useLocalStorage<ReplaceCartPayload>("cart");
+
+  const { load: loadWishlist, save: saveWishlist } =
+    useLocalStorage<ReplaceWishlistPayload>("wishlist");
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -34,8 +38,8 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const storedCart = cartStorage.load();
-    const storedWishlist = wishlistStorage.load();
+    const storedCart = loadCart();
+    const storedWishlist = loadWishlist();
 
     if (storedCart) {
       dispatch(cartActions.replaceCart(storedCart));
@@ -44,25 +48,25 @@ function App() {
     if (storedWishlist) {
       dispatch(wishlistActions.replaceWishlist(storedWishlist));
     }
-  }, [cartStorage, wishlistStorage, dispatch]);
+  }, [loadCart, loadWishlist, dispatch]);
 
   useEffect(() => {
     if (!cart.changed) return;
 
-    cartStorage.save({
+    saveCart({
       items: cart.items,
       totalQuantity: cart.totalQuantity,
     });
-  }, [cart, cartStorage]);
+  }, [cart.items, cart.totalQuantity, cart.changed, saveCart]);
 
   useEffect(() => {
     if (!wishlist.changed) return;
 
-    wishlistStorage.save({
+    saveWishlist({
       items: wishlist.items,
       quantity: wishlist.quantity,
     });
-  }, [wishlist, wishlistStorage]);
+  }, [wishlist.items, wishlist.quantity, wishlist.changed, saveWishlist]);
 
   return (
     <>
