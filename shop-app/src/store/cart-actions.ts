@@ -1,13 +1,8 @@
 import type { AppDispatch } from ".";
-import type { CartState, CartItem } from "../types/cart";
+import type { CartState, CartApiResponse } from "../types/cart";
 
 import { uiActions } from "./ui-slice";
 import { cartActions } from "./cart-slice";
-
-type CartApiResponse = {
-  items?: CartItem[];
-  totalQuantity?: number;
-};
 
 export const fetchCartData = () => {
   return async (dispatch: AppDispatch) => {

@@ -11,8 +11,13 @@ import { AiOutlineCloseSquare } from "react-icons/ai";
 
 const Wishlist = () => {
   const products = useAppSelector((state) => state.products.items);
+  const wishlist = useAppSelector((state) => state.wishlist.items);
 
-  const wishlistItems = products.filter((item) => item.isFavourite);
+  const wishlistItemIds = new Set(wishlist.map((item) => item.id));
+
+  const wishlistItems = products.filter((product) =>
+    wishlistItemIds.has(product.id),
+  );
 
   const dispatch = useAppDispatch();
 
