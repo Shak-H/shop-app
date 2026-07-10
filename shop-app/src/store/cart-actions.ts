@@ -21,8 +21,8 @@ export const fetchCartData = () => {
       const cartData = await fetchData();
       dispatch(
         cartActions.replaceCart({
-          items: cartData.items || [],
-          totalQuantity: cartData.totalQuantity || 0,
+          items: cartData.items ?? [],
+          totalQuantity: cartData.totalQuantity ?? 0,
         }),
       );
     } catch (error) {
